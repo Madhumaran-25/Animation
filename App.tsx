@@ -7,7 +7,7 @@ import TryIt from './src/screens/TryIt';
 import GestureAnimation from './src/screens/Gesture'
 import { Gesture, GestureHandlerRootView } from 'react-native-gesture-handler'
 import PinchGesture from './src/screens/Pinch'
-import CombinedGestures from './src/screens/CombimedGestures'
+import CombinedGestures from './src/screens/CombinedGestures'
 
 
 const App = () => {
