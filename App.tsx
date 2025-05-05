@@ -6,13 +6,15 @@ import RotateAnimation from './src/screens/RotateAnimation'
 import TryIt from './src/screens/TryIt';
 import GestureAnimation from './src/screens/Gesture'
 import { Gesture, GestureHandlerRootView } from 'react-native-gesture-handler'
+import PinchGesture from './src/screens/Pinch'
+import CombinedGestures from './src/screens/CombimedGestures'
 
 
 const App = () => {
   return (
 
     <GestureHandlerRootView>
-      <GestureAnimation/>
+      <CombinedGestures/>
     </GestureHandlerRootView>
     )
 }

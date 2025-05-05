@@ -1,26 +1,31 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { GestureDetector, Gesture } from 'react-native-gesture-handler'
-import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 
 const GestureAnimation = () => {
 
-    const color = useSharedValue(0)
+    const scale = useSharedValue(1);
 
     const animatedStyle = useAnimatedStyle(() => {
         return {
-            backgroundColor: color.value === 0 ? 'blue' : 'red'
+            transform : [{ scale: scale.value
+            }]
         }
     });
 
-    const tap = Gesture.Tap()
-        .onBegin(() => {
-            color.value = color.value === 0 ? 1 : 0;
+    const longPress = Gesture.LongPress()
+        .onStart(() => {
+            scale.value = withSpring(0.6)
+        }).onEnd(() => { 
+             scale.value = withSpring(1);
         })
+
+
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <GestureDetector gesture={tap}>
-                <Animated.View style={[{ height: 100, width: 100, }, animatedStyle]}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
+            <GestureDetector gesture={longPress}>
+                <Animated.View style={[{ height: 100, width: 100, backgroundColor:'blue' }, animatedStyle]}>
 
                 </Animated.View>
             </GestureDetector>

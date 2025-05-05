@@ -1,12 +1,9 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 
-const PinchGesture = () => {
+export default function PinchExample() {
   const scale = useSharedValue(1);
 
   const pinchGesture = Gesture.Pinch()
@@ -14,7 +11,7 @@ const PinchGesture = () => {
       scale.value = event.scale;
     })
     .onEnd(() => {
-      scale.value = 1;
+      scale.value = withSpring(1);
     });
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -28,20 +25,18 @@ const PinchGesture = () => {
       </GestureDetector>
     </View>
   );
-};
-
-export default PinchGesture;
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   box: {
     width: 200,
     height: 200,
-    backgroundColor: 'skyblue',
+    backgroundColor: 'tomato',
     borderRadius: 12,
   },
 });
